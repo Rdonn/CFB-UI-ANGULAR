@@ -1,0 +1,26 @@
+<mat-toolbar class="rounded">
+    <span>Teams for <year-dropdown-button [year]="year" (yearChange) = "handleYearChange($event)"></year-dropdown-button>
+    </span>
+</mat-toolbar>
+<table mat-table #table [dataSource]="dataSource">
+  <ng-container matColumnDef="column">
+    <th mat-header-cell *matHeaderCellDef> name
+      <mat-form-field floatLabel="never" class="filter">
+        <mat-label>Search</mat-label>
+        <input matInput [formControl]="nameFilter" (keyup)="filterEdited()">
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+  </ng-container>
+  <ng-container matColumnDef="somethingelse">
+    <th mat-header-cell *matHeaderCellDef> year
+      <mat-form-field floatLabel="never" class="filter">
+        <mat-label>Search</mat-label>
+        <input matInput [formControl]="yearFilter" (keyup)="filterEdited()">
+      </mat-form-field>
+    </th>
+    <td mat-cell *matCellDef="let row"> {{row.year}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="['column', 'somethingelse']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['column', 'somethingelse'];"></tr>
+</table>

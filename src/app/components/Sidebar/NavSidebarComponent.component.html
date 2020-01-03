@@ -1,0 +1,35 @@
+<mat-toolbar class="rounded" class="home-page-main-bar">
+    <span>My Application</span>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav mode = "side" opened>
+       <section class="animated bounce">
+          <button type="button" class="btn btn-primary btn-block" 
+          [routerLink]="['conferences']">Conferences
+            <i class="material-icons">
+                sports_football
+                </i>
+          </button>
+          
+       </section>
+       <section>
+            <button type="button" class="btn btn-primary btn-block" (click)="handleClick()"
+            [routerLink]="['teams']">Teams
+                <i class="material-icons">
+                    sports_football
+                    </i>
+            </button>
+            
+       </section>
+       <section>
+        
+        <button type="button" class="btn btn-primary btn-block" (click)="handleClick()">Players
+            <i class="material-icons">
+                sports_football
+            </i>
+        </button>
+        
+   </section>
+    </mat-sidenav>
+    <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+ </mat-sidenav-container>

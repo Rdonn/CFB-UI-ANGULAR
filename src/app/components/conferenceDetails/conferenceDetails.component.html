@@ -1,0 +1,25 @@
+<div>
+    <mat-toolbar class="rounded">
+        <mat-toolbar-row>
+            <span>{{conference.year}} {{conference.name}}</span>
+    
+            <button type="button" class="backButton btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="left"
+                title="back"
+                (click)="goBack()">
+                <i class="material-icons">keyboard_backspace</i>
+            </button>
+        </mat-toolbar-row>
+        <mat-toolbar-row>
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle selected value="bold">Teams</mat-button-toggle>
+                <mat-button-toggle value="italic">Players</mat-button-toggle>
+              </mat-button-toggle-group>
+            
+        </mat-toolbar-row>
+       
+        
+    </mat-toolbar>
+</div>
+
+
+<conference-details-team-table [conference]='conference'></conference-details-team-table>
