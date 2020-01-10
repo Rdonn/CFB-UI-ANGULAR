@@ -1,0 +1,5 @@
+<mat-form-field *ngIf="player">
+    <select matNativeControl [formControl]="formControl">
+      <option *ngFor="let year of player.players">{{year.year_played}}</option>
+    </select>
+</mat-form-field>

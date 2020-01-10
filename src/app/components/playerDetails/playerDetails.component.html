@@ -1,0 +1,14 @@
+
+
+<mat-toolbar class="rounded">
+  <mat-toolbar-row>
+    <span *ngIf="player">{{player.first_name}} {{player.last_name}} <player-year-dropdown
+        (yearChange)="handleYearChange($event)" [player]="playerTuples"></player-year-dropdown></span>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="representation">
+    <player-rep-radio-buttons [playerRepresentation]="representation" (change)="handleCategoryChange($event)">
+    </player-rep-radio-buttons>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

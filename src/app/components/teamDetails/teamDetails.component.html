@@ -1,8 +1,7 @@
 <div>
     <mat-toolbar class="rounded">
         <mat-toolbar-row>
-            <span>{{conference.year}} {{conference.name}}</span>
-    
+            <span>{{team.year}} {{team.name}}</span>
             <button type="button" class="backButton btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="left"
                 title="back"
                 (click)="goBack()">
@@ -11,21 +10,13 @@
         </mat-toolbar-row>
         <mat-toolbar-row>
             <mat-button-toggle-group name="fontStyle" aria-label="Font Style" (change)="handleChange($event)">
-                <mat-button-toggle checked='true' value="teams">Teams</mat-button-toggle>
-                <mat-button-toggle value="players">Players</mat-button-toggle>
+                <mat-button-toggle checked='true' value="roster">Roster</mat-button-toggle>
             </mat-button-toggle-group>
+            
         </mat-toolbar-row>
        
         
     </mat-toolbar>
 </div>
-    
 
-
-<div *ngIf="value=='teams'">
-    <conference-details-team-table [conference]='conference'></conference-details-team-table>
-</div>
-<div *ngIf="value=='players'">
-    <conference-details-player-table [conference]='conference'></conference-details-player-table>
-</div>
-
+<team-roster-table [team]='team'></team-roster-table>

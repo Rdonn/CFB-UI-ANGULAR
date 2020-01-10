@@ -1,0 +1,69 @@
+<table mat-table #table [dataSource]="dataSource" *ngIf="dataSource">
+    <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef> First Name
+            <mat-form-field floatLabel="never" class="filter">
+                <mat-label>Search</mat-label>
+                <input matInput [formControl]="firstNameFilter" >
+              </mat-form-field>
+        </th>
+      <td mat-cell *matCellDef="let row"> {{row.first_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef> Last Name
+            <mat-form-field floatLabel="never" class="filter">
+                <mat-label>Search</mat-label>
+                <input matInput [formControl]="lastNameFilter" >
+              </mat-form-field>
+        </th>
+      <td mat-cell *matCellDef="let row"> {{row.last_name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="pos">
+        <th mat-header-cell *matHeaderCellDef> POS
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.pos}} </td>
+      </ng-container>
+      <ng-container matColumnDef="num">
+        <th mat-header-cell *matHeaderCellDef> NUM
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.num}} </td>
+      </ng-container>
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef> Year
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.year}} </td>
+      </ng-container>
+      <ng-container matColumnDef="height">
+        <th mat-header-cell *matHeaderCellDef> Height
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.height}} </td>
+      </ng-container>
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef> Weight
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.weight}} </td>
+      </ng-container>
+      <ng-container matColumnDef="team.name">
+        <th mat-header-cell *matHeaderCellDef> Team Name
+            <!--teamNameFormValue-->
+            <mat-form-field floatLabel="never" class="filter">
+                <mat-label>Search</mat-label>
+                <input matInput [formControl]="teamNameFormValue" >
+              </mat-form-field>
+
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.team.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="team.year">
+        <th mat-header-cell *matHeaderCellDef> Team Year
+        </th>
+        <td mat-cell *matCellDef="let row"> {{row.team.year}} </td>
+      </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnDefs"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnDefs;"></tr>
+  </table>
+  <mat-paginator 
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="handlePage($event)">
+  </mat-paginator>

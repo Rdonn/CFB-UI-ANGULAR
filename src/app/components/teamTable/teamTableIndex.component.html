@@ -1,3 +1,4 @@
+
 <mat-toolbar class="rounded">
     <span>Teams for <year-dropdown-button [year]="year" (yearChange) = "handleYearChange($event)"></year-dropdown-button>
     </span>
@@ -21,6 +22,15 @@
     </th>
     <td mat-cell *matCellDef="let row"> {{row.year}} </td>
   </ng-container>
-  <tr mat-header-row *matHeaderRowDef="['column', 'somethingelse']"></tr>
-  <tr mat-row *matRowDef="let row; columns: ['column', 'somethingelse'];"></tr>
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> Details</th>
+    <td mat-cell *matCellDef="let row"> <button type="button" class="btn btn-primary btn-rounded"
+      (click)='navigateToTeamDetails(row)'>
+      <i class="material-icons">
+        details
+        </i>
+    </button> </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="['column', 'somethingelse', 'details']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['column', 'somethingelse', 'details'];"></tr>
 </table>

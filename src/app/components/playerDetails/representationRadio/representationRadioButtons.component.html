@@ -1,0 +1,4 @@
+
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style" (change)="handleChange($event)">
+    <mat-button-toggle class="toggleButton" *ngFor="let item of representationIterable" value="{{item}}">{{item | formatCamel}}</mat-button-toggle>
+</mat-button-toggle-group>

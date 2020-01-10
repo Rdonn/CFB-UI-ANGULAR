@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class ConferenceTableIndexComponent implements OnInit, OnDestroy{
+    private identifier = 'ConferenceTableIndexComponent'; 
     dataSource: Conference[]; 
     filterValues = {name: {name: 'name', value: ''} as FilterData, 
                     year: {name: 'year', value: ''} as FilterData}
@@ -46,7 +47,7 @@ export class ConferenceTableIndexComponent implements OnInit, OnDestroy{
       })
 
       this.subscriptionMonitor = this.getDataSourceService
-      .getMany(this.urlLocationPath)
+      .getMany(this.urlLocationPath, this.identifier)
       .subscribe((result)=>{
         result.subscribe((conference: Conferences)=>{
           this.dataSource = conference.conferences;
@@ -60,8 +61,8 @@ export class ConferenceTableIndexComponent implements OnInit, OnDestroy{
 
     filterEdited(){
       this.subscriptionMonitor.unsubscribe();
-      this.getDataSourceService.applyFilters(this.filterValues)
-      this.subscriptionMonitor = this.getDataSourceService.getMany(this.urlLocationPath).subscribe((result)=>{
+      this.getDataSourceService.applyFilters(this.filterValues, this.identifier)
+      this.subscriptionMonitor = this.getDataSourceService.getMany(this.urlLocationPath, this.identifier).subscribe((result)=>{
         result.subscribe((conference: Conferences)=>{
           this.dataSource = conference.conferences
         })
@@ -74,7 +75,7 @@ export class ConferenceTableIndexComponent implements OnInit, OnDestroy{
       this.year = year; 
       this.urlLocationPath[2] = this.year; 
       this.subscriptionMonitor.unsubscribe(); 
-      this.subscriptionMonitor = this.getDataSourceService.getMany(this.urlLocationPath).subscribe((result)=>{
+      this.subscriptionMonitor = this.getDataSourceService.getMany(this.urlLocationPath, this.identifier).subscribe((result)=>{
         result.subscribe((conference: Conferences)=>{
           this.dataSource = conference.conferences; 
         })
@@ -91,7 +92,7 @@ export class ConferenceTableIndexComponent implements OnInit, OnDestroy{
     }
 
     ngOnDestroy(){
-      this.getDataSourceService.clearParams(); 
+      this.getDataSourceService.clearParams(this.identifier); 
       
     }
 }

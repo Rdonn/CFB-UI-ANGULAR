@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
 
 export class ConferenceDetailsTableTeamComponent implements OnInit{
     @Input() conference: Conference;
+    identifier = 'ConferenceDetailsTableTeamComponent'
     dataSource: Team[];
 
     filterValues = {name: {name: 'name', value: ''} as FilterData}
@@ -35,15 +36,23 @@ export class ConferenceDetailsTableTeamComponent implements OnInit{
     ngOnInit(){
 
         this.nameFilter.valueChanges.subscribe(result=>{
-            if(result != ''){
-                this.filterValues.name.value = result;
-            }
+            
+            this.filterValues.name.value = result;
+            
+            this.getDataSourceService.applyFilters(this.filterValues, this.identifier); 
+            this.subscriptionMonitor.unsubscribe()
+            this.subscriptionMonitor = this.getDataSourceService.getMany(this.urlLocationPath, this.identifier)
+            .subscribe(result=>{
+                result.subscribe((teams: Teams)=>{
+                    this.dataSource = teams.teams
+                })
+            })
         })
 
 
         this.urlLocationPath.push(this.conference.year)
         this.urlLocationPath.push(this.conference.name)
-        this.subscriptionMonitor = this.getDataSourceService.getMany(this.urlLocationPath)
+        this.subscriptionMonitor = this.getDataSourceService.getMany(this.urlLocationPath, this.identifier)
             .subscribe((result)=>{
                 result.subscribe((teams: Teams)=>{
                     this.dataSource = teams.teams; 

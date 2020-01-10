@@ -1,0 +1,9 @@
+<span>{{category | formatCamel}} for {{year_played}}</span>
+<table class="mat-table" *ngIf="iterable_stats">
+    <tr class="mat-header-row" >
+      <th class="mat-header-cell" *ngFor="let item of iterable_stats">{{item.name}}</th>
+    </tr>
+    <tr class="mat-row">
+      <td class="mat-cell" *ngFor="let item of iterable_stats">{{item.value}}</td>
+    </tr>
+</table>
