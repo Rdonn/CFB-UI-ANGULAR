@@ -74,11 +74,17 @@
           <th mat-header-cell *matHeaderCellDef>
               Details
           </th>
-          <td mat-cell *matCellDef="let row"><button class="btn btn-primary btn-circle btn-md">
-              <i class="material-icons" (click)="handleClick(row.player_id)">
-                  details
-              </i>
-          </button></td>
+          <td mat-cell *matCellDef="let row">
+              <div *ngIf="row.has_stats">
+                <button class="btn btn-primary btn-circle btn-md"  (click)="handleClick(row.player_id)">
+                    <i class="material-icons" >
+                        details
+                    </i>
+                </button>
+              </div>
+              
+          
+        </td>
       </ng-container>
       
       <tr mat-header-row *matHeaderRowDef="columnDefs"></tr>

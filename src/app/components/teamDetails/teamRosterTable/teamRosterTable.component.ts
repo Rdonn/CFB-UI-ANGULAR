@@ -7,6 +7,8 @@ import { GlobalVars } from 'src/globals';
 import { PageEvent } from '@angular/material';
 import { GetDataSourceService } from 'src/app/Services/getDatasource.service';
 import { FormControl } from '@angular/forms';
+import { NavigationDepthService } from 'src/app/Services/navigationDepth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'team-roster-table',
@@ -29,8 +31,13 @@ export class TeamRosterTableComponent extends BaseTable implements OnInit{
     lastNameFilter = new FormControl('');
 
 
-    constructor(private getDataSourceService: GetDataSourceService){
-        super(); 
+    constructor(private getDataSourceService: GetDataSourceService, 
+                private navigationDepthComponent: NavigationDepthService,
+                private activatedRoute: ActivatedRoute,
+                private router: Router){
+        
+        super();
+        this.navigationDepthComponent.setDirections(()=>{this.router.navigate(['../../'], {relativeTo: this.activatedRoute})}) 
     }
 
     ngOnInit(): void {

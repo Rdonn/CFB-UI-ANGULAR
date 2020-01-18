@@ -34,9 +34,6 @@ export class ConferenceDetailsComponent implements OnInit{
     }
 
     constructor(private activatedRoute: ActivatedRoute, 
-                private router: Router,
-                private getSingleEntityService: GetSingleEntityService, 
-                private getDataSourceService: GetDataSourceService, 
                 private location: Location) {
         
     }

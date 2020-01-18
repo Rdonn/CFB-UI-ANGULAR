@@ -23,12 +23,15 @@ export class GetDataSourceService {
     //if somebody is just hemmering the filter.... need to delay the request from being sent
     //could easily overload the server
     getMany(url:string[], hash){
+        console.log(this.param_map);
+        
         if(this.param_map.has(hash)){
             return of(this.httpClient.get(encodeURI(url.join('/')), {params: this.param_map.get(hash)}))
-            .pipe(delay(500))
+            .pipe(delay(500));
         }
         else{
             return of(this.httpClient.get(encodeURI(url.join('/'))))
+            .pipe(delay(500)); 
         }
         
         

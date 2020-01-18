@@ -7,6 +7,7 @@ import { Observable, Subscription, of } from 'rxjs';
 import { GlobalVars } from 'src/globals';
 import { delay } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavigationDepthService } from 'src/app/Services/navigationDepth.service';
 
 @Component({
     selector: "conference-table", 
@@ -29,7 +30,9 @@ export class ConferenceTableIndexComponent implements OnInit, OnDestroy{
     urlLocationPath: string[] = [GlobalVars.host, 'conferences', this.year]
     constructor(private getDataSourceService: GetDataSourceService, 
                 private activatedRoute: ActivatedRoute, 
-                private router: Router){
+                private router: Router, 
+                private navigationDepthService: NavigationDepthService){
+                  navigationDepthService.setDirections(()=>this.router.navigate(['../'], {relativeTo: this.activatedRoute})); 
       
     }
 

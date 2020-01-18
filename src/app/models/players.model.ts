@@ -30,6 +30,7 @@ export interface Player{
     
     team?: Team;
 
+    has_stats: boolean; 
 }
 
 export interface Players{

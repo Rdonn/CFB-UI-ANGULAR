@@ -2,11 +2,6 @@
     <mat-toolbar class="rounded">
         <mat-toolbar-row>
             <span>{{team.year}} {{team.name}}</span>
-            <button type="button" class="backButton btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="left"
-                title="back"
-                (click)="goBack()">
-                <i class="material-icons">keyboard_backspace</i>
-            </button>
         </mat-toolbar-row>
         <mat-toolbar-row>
             <mat-button-toggle-group name="fontStyle" aria-label="Font Style" (change)="handleChange($event)">

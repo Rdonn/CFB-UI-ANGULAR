@@ -22,7 +22,7 @@ export class PlayerStatisticsViewComponent implements OnInit {
     constructor(private getSingleEntityService: GetSingleEntityService,
                 private activatedRoute: ActivatedRoute,
                 private router: Router){
-
+                
     }
 
     ngOnInit(){

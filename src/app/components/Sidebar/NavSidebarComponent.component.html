@@ -1,36 +1,70 @@
-<mat-toolbar class="rounded" class="home-page-main-bar">
-    <span>My Application</span>
-</mat-toolbar>
-<mat-sidenav-container>
-    <mat-sidenav mode = "side" opened>
-       <section class="animated bounce">
-          <button type="button" class="btn btn-primary btn-block" 
-          [routerLink]="['conferences']">Conferences
-            <i class="material-icons">
-                sports_football
-                </i>
-          </button>
-          
-       </section>
-       <section>
-            <button type="button" class="btn btn-primary btn-block" (click)="handleClick()"
-            [routerLink]="['teams']">Teams
-                <i class="material-icons">
-                    sports_football
-                    </i>
-            </button>
+<mat-sidenav-container dir="up">
+  <mat-sidenav #sideNav mode="side">
+    <section class="top-section">
+        <button mat-stroked-button type="button" class="btn btn-primary btn-block"
+        [routerLink]="['/']">Home
+        <i class="material-icons">
+          home
+        </i>
+        </button>
+    </section>
+    <section>
+      <button mat-stroked-button type="button" class="btn btn-primary btn-block"
+        [routerLink]="['conferences']">Conferences
+        <i class="material-icons">
+          sports_football
+        </i>
+      </button>
+
+    </section>
+    <section>
+      <button mat-stroked-button type="button" class="btn btn-primary btn-block" [routerLink]="['teams']">Teams
+        <i class="material-icons">
+          sports_football
+        </i>
+      </button>
+
+    </section>
+    <section>
+
+      <button mat-stroked-button type="button" class="btn btn-primary btn-block" [routerLink]="['players']">Players
+        <i class="material-icons">
+          sports_football
+        </i>
+      </button>
+
+    </section>
+    <section>
+        <button mat-stroked-button (click)="toggleAnimation()" type="button" class="btn btn-primary btn-block">Statistics
             
-       </section>
-       <section>
-        
-        <button type="button" class="btn btn-primary btn-block" (click)="handleClick()"
-        [routerLink]="['players']">Players
+              <i class="material-icons" *ngIf="animationState=='closed'">
+                arrow_drop_up
+              </i>
+              <i class="material-icons" *ngIf="animationState=='opened'">
+                arrow_drop_down
+              </i>
+            
+            
+        </button>
+    </section>
+    <div  [@openClose]="animationState" style="display: block; overflow: hidden; text-align: right;"
+    (@openClose.start)="animationStarted($event)">
+      <section *ngFor="let item of categories" class="subSection">
+        <button *ngIf="(showSubButtons | async)" mat-stroked-button type="button" class="btn btn-primary btn-block subButton" style="color: grey;">{{item | formatCamel}}
             <i class="material-icons">
-                sports_football
+              sports_football
             </i>
         </button>
-        
-   </section>
+    </section>
+    
+    </div>
+    
     </mat-sidenav>
-    <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
- </mat-sidenav-container>
+  <mat-sidenav-content>
+    <mat-toolbar class="home-page-toolbar">
+        <button mat-button (click)="sideNav.toggle()"><i class="material-icons">list</i></button>
+        <button mat-mini-fab class= "sm" (click)="handleNavigation()"><i class="material-icons">keyboard_backspace</i></button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

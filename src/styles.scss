@@ -2,7 +2,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
-
 @import './../node_modules/bootstrap/scss/bootstrap.scss';
 @import'./../node_modules/bootstrap/scss/mixins';
 // Plus imports for other components in your app.
@@ -32,9 +31,6 @@ $CFB-UI-theme: mat-light-theme($CFB-UI-primary, $CFB-UI-accent, $CFB-UI-warn);
 
 /* You can add global styles to this file, and also import other style files */
 
-mat-toolbar, .home-page-main-bar{
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
 
 .home-page-main-bar{
     margin: 0px !important;
@@ -42,7 +38,6 @@ mat-toolbar, .home-page-main-bar{
 }
 
 mat-toolbar{
-    margin-top: 10px !important;
     margin-bottom: 3px !important;
     
 }

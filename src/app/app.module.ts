@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {MatSidenavModule} from "@angular/material/sidenav"
 import { NavSidebarComponent } from './components/Sidebar/sideNav.component';
 import { ConferenceTableIndexComponent } from './components/conferenceTable/conferenceTable.index.component';
-import {MatTableModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatButtonToggle, MatButtonToggleModule, MatPaginatorModule} from '@angular/material'
+import {MatTableModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatToolbarModule, MatButtonModule, MatButtonToggle, MatButtonToggleModule, MatPaginatorModule, MatExpansionModule} from '@angular/material'
 import { GetDataSourceService } from './Services/getDatasource.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -27,6 +27,7 @@ import { PlayerYearDropDownComponent } from './components/playerDetails/playerYe
 import { PlayerRepresentationRadioButtons } from './components/playerDetails/representationRadio/representationRadioButtons.component';
 import { PlayerStatisticsViewComponent } from './components/playerDetails/playerStatisticsView/playerStatisticsView.component';
 import { FormatCamelCasePipe } from './pipes/stringFormatting/formatCamelCase.pipe';
+import { NavigationDepthService } from './Services/navigationDepth.service';
 @NgModule({
   declarations: [
     AppComponent, 
@@ -64,13 +65,15 @@ import { FormatCamelCasePipe } from './pipes/stringFormatting/formatCamelCase.pi
     FormsModule, 
     MatButtonModule, 
     MatButtonToggleModule, 
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatExpansionModule
     
     
   ],
   providers: [
     GetDataSourceService, 
-    GetSingleEntityService
+    GetSingleEntityService,
+    NavigationDepthService
   ],
   bootstrap: [AppComponent]
 })
